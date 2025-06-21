@@ -53,6 +53,10 @@
          path: "{{ vault_path }}"
          token: "{{ vaultToken }}"
       register: vault_secrets
+
+    - name: Debug vault_secrets
+      debug:
+        var: vault_secrets
     
     - name: Templating env file
       ansible.builtin.template:

@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  jira:
+    image: haxqer/jira:9.17.5
+    container_name: jira-srv
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    volumes:
+      - home_data:/var/jira
+    restart: always
+    networks:
+      - network-bridge
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-jira
+    env_file: 
+    - ./variables.env
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_bin']
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    networks:
+      - network-bridge
+
+networks:
+  network-bridge:
+    driver: bridge
+
+volumes:
+  home_data:
+    external: false
+  mysql_data:
+    external: false

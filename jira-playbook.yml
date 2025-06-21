@@ -3,7 +3,8 @@
   become: yes
   vars:
     vault_addr: "http://77.221.140.212:8201"
-    vault_secret_path: "secret/jira"
+    vault_mount_point: "secret"
+    vault_path: "jira"
   vars_files:
     - secret_vault_token.yml
   tasks:
@@ -48,7 +49,8 @@
     - name: Getting HashiCorp secrets
       community.hashi_vault.vault_kv2_get:
          url: "{{ vault_addr }}"
-         secret: "{{ vault_secret_path }}"
+         engine_mount_point: "{{ vault_mount_point }}"
+         path: "{{ vault_path }}"
          token: "{{ vaultToken }}"
       register: vault_secrets
     

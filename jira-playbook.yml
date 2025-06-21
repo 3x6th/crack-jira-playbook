@@ -5,7 +5,7 @@
     vault_addr: "http://77.221.140.212:8201"
     vault_secret_path: "secret/jira"
   vars_files:
-    - secret_vault.yml
+    - secret_vault_token.yml
   tasks:
     - name: Update the apt package index
       ansible.builtin.apt:

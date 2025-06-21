@@ -49,7 +49,7 @@
       community.hashi_vault.vault_kv2_get:
          url: "{{ vault_addr }}"
          secret: "{{ vault_secret_path }}"
-         token: "{{ vault_token }}"
+         token: "{{ vaultToken }}"
       register: vault_secrets
     
     - name: Templating env file

@@ -46,7 +46,7 @@
         enabled: yes
     
     - name: Getting HashiCorp secrets
-      community.hashi_vault.hashi_vault:
+      community.hashi_vault.vault_kv2_get:
          url: "{{ vault_addr }}"
          secret: "{{ vault_secret_path }}"
          token: "{{ vault_token }}"

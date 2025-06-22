@@ -53,10 +53,6 @@
          path: "{{ vault_path }}"
          token: "{{ vaultToken }}"
       register: vault_secrets
-
-    - name: Debug vault_secrets
-      debug:
-        var: vault_secrets
     
     - name: Templating env file
       ansible.builtin.template:
@@ -67,3 +63,9 @@
     - name: Run Docker Compose
       ansible.builtin.command:
         cmd: docker compose up -d
+    
+    - name: Remove sensetive data
+      ansible.builtin.shell:
+        "rm -rf variables.env"
+      args:
+        warn: no
